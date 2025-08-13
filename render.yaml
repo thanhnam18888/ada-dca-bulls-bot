@@ -1,0 +1,43 @@
+services:
+  - type: worker
+    name: ada-dca-bulls-bot
+    env: python
+    plan: free
+    region: oregon
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python ada_dca_bulls_bot.py"
+    autoDeploy: true
+    envVars:
+      - key: SYMBOL
+        value: "ADAUSDT"
+      - key: CATEGORY
+        value: "linear"
+      - key: EQUITY_USDT
+        value: "150"
+      - key: USE_CROSS
+        value: "0"
+      - key: LEVERAGE_X
+        value: "10"
+      - key: TP_PCT
+        value: "1.0"
+      - key: MAX_DCA
+        value: "5"
+      - key: VOL_SCALE_LONG
+        value: "1.18"
+      - key: VOL_SCALE_SHORT
+        value: "1.15"
+      - key: FIT_LONG_STEP
+        value: "11.05"
+      - key: FIT_SHORT_STEP
+        value: "8.61"
+      - key: FLIP_BUFFER_PCT
+        value: "0.5"
+      - key: RESEED_IMMEDIATELY
+        value: "1"
+      - key: SEED_FRESH_ONLY
+        value: "0"
+      - key: LOG_LEVEL
+        value: "INFO"
+    secretEnv:
+      - key: BYBIT_API_KEY
+      - key: BYBIT_API_SECRET
